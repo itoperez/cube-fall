@@ -36,7 +36,8 @@ public class PlatformSpawner : MonoBehaviour
 
             GameObject newPlatform = null;
 
-            if(platform_Spawn_Count < 2) {
+            // Spawn platform cycle: (0) regular, (1) regular, (2) regular or moving, (3) regular or spike, (4) regular or breakable [[repeat]]
+            if (platform_Spawn_Count < 2) {
 
                 newPlatform = Instantiate(platformPrefab, temp, Quaternion.identity);
                 
@@ -67,6 +68,7 @@ public class PlatformSpawner : MonoBehaviour
                 platform_Spawn_Count = 0;
 
             }
+            // keeps heirarchy clean, spawns platforms under parent GameObject Platform Spawner
             if(newPlatform) {
                 newPlatform.transform.parent = transform;  
             }          

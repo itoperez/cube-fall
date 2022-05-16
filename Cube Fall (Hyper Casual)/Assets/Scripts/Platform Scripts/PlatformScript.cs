@@ -7,6 +7,8 @@ public class PlatformScript : MonoBehaviour
     public float move_Speed = 2f;
     public float bound_Y = 6f;  
 
+    public float platformMoveSpeed = 1f;
+
     public bool speed_Platform_Left, speed_Platform_Right, is_Breakable, is_Spike, is_Platform;
 
     private Animator anim;
@@ -52,12 +54,13 @@ public class PlatformScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D target) {
         if(target.gameObject.tag == "Player") {
-            if(is_Breakable) {
-                SoundManager.instance.LandSound();
+            SoundManager.instance.LandSound();
+            if (is_Breakable) {
+                //SoundManager.instance.LandSound();
                 anim.Play("Break");
             }
             if(is_Platform) {
-                SoundManager.instance.LandSound();
+                //SoundManager.instance.LandSound();
             }
         }
     }
@@ -65,10 +68,10 @@ public class PlatformScript : MonoBehaviour
     void OnCollisionStay2D(Collision2D target) {
         if(target.gameObject.tag == "Player") {
             if(speed_Platform_Left) {
-                target.gameObject.GetComponent<PlayerMovement>().PlatformMove(-1f);
+                target.gameObject.GetComponent<PlayerMovement>().PlatformMove(-platformMoveSpeed);
             }
             if(speed_Platform_Right) {
-                target.gameObject.GetComponent<PlayerMovement>().PlatformMove(1f);
+                target.gameObject.GetComponent<PlayerMovement>().PlatformMove(platformMoveSpeed);
             }
         }
     }
