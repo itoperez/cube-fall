@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2894695331746924447}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Jumpable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_Speed: 2
   bound_Y: 6
+  platformMoveSpeed: 1
   speed_Platform_Left: 0
   speed_Platform_Right: 0
   is_Breakable: 0

@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 3f;
     private const float jumpAmount = 8f;
+
+    private bool canJump = false;
     
 
     void Awake()
@@ -38,8 +40,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump() {
         // Spacebar
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) & canJump) {
             myBody.velocity = Vector2.up * jumpAmount;
+            canJump = false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D target)
+    {        
+        if (target.gameObject.tag == "Jumpable") {
+            canJump = true;
         }
     }
 
